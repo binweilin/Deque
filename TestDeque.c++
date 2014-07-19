@@ -48,6 +48,11 @@ To obtain coverage of the test:
 
 #include "Deque.h"
 
+
+
+//total 62 functions
+
+
 // ---------
 // TestDeque
 // ---------
