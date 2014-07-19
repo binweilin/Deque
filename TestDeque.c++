@@ -24,7 +24,7 @@ Google Test Libraries:
     /usr/lib/libgtest_main.a
 
 To compile the test:
-    % g++-4.7 -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall Integer.c++ TestDeque.c++ -o TestDeque -lgtest -lgtest_main -lpthread
+    % g++-4.7 -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall TestDeque.c++ -o TestDeque -lgtest -lgtest_main -lpthread
 
 To run the test:
     % valgrind TestDeque
