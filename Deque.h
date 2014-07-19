@@ -121,7 +121,7 @@ class my_deque {
         friend bool operator < (const my_deque& lhs, const my_deque& rhs) {
             // <your code>
             // you must use std::lexicographical_compare()
-            return true;}
+            return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end();}
 
     private:
         // ----
@@ -131,6 +131,12 @@ class my_deque {
         allocator_type _a;
 
         // <your data>
+        size_type size;
+        pointer* out_b;
+        pointer* out_e;
+        pointer* in_b;
+        pointer* in_e;
+
 
     private:
         // -----
