@@ -260,8 +260,7 @@ class my_deque {
                 reference operator * () const {
                     // <your code>
                     // dummy is just to be able to compile the skeleton, remove it
-                    static value_type dummy;
-                    return dummy;}
+                    return *this._d[this._pos];}
 
                 // -----------
                 // operator ->
@@ -284,6 +283,7 @@ class my_deque {
                 iterator& operator ++ () {
                     // <your code>
                     assert(valid());
+                    this->_pos++;
                     return *this;}
 
                 /**
@@ -308,6 +308,7 @@ class my_deque {
                 iterator& operator -- () {
                     // <your code>
                     assert(valid());
+                    this->_pos--;
                     return *this;}
 
                 /**
@@ -333,6 +334,7 @@ class my_deque {
                 iterator& operator += (difference_type d) {
                     // <your code>
                     assert(valid());
+                    this->_pos += d;
                     return *this;}
 
                 // -----------
@@ -347,6 +349,7 @@ class my_deque {
                 iterator& operator -= (difference_type d) {
                     // <your code>
                     assert(valid());
+                    this->_pos -= d;
                     return *this;}};
 
     public:
