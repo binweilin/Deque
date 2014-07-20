@@ -107,7 +107,7 @@ class my_deque {
         friend bool operator == (const my_deque& lhs, const my_deque& rhs) {
             // <your code>
             // you must use std::equal()
-            return true;}
+            return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end();}
 
         // ----------
         // operator <
@@ -121,7 +121,7 @@ class my_deque {
         friend bool operator < (const my_deque& lhs, const my_deque& rhs) {
             // <your code>
             // you must use std::lexicographical_compare()
-            return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end();}
+            return true;}
 
     private:
         // ----
