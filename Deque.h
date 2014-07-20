@@ -145,7 +145,12 @@ class my_deque {
 
         bool valid () const {
             // <your code>
-            return true;}
+            if(out_b < out_e && in_b < in_e && size > 0)
+                return true;
+            if(out_b == 0 && out_e == 0 && in_b == 0 && in_e == 0 && size == 0)
+                return true;
+            return false;
+        }
 
     public:
         // --------
@@ -176,7 +181,7 @@ class my_deque {
                  */
                 friend bool operator == (const iterator& lhs, const iterator& rhs) {
                     // <your code>
-                    return true;}
+                    return (lhs._pos == rhs._pos) && lhs._d == rhs._d);}
 
                 /**
                  * @param lhs an iterator reference 
@@ -216,6 +221,8 @@ class my_deque {
                 // ----
 
                 // <your data>
+                size_type _pos;
+                my_deque _d;
 
             private:
                 // -----
@@ -224,7 +231,7 @@ class my_deque {
 
                 bool valid () const {
                     // <your code>
-                    return true;}
+                    return _pos >= 0;}
 
             public:
                 // -----------
