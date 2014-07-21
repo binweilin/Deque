@@ -138,6 +138,7 @@ class my_deque {
         pointer* in_e;
 
 
+
     private:
         // -----
         // valid
@@ -641,11 +642,14 @@ class my_deque {
          * throw out_of_range exception if access if not in the range
          * return reference to value of my_deque
          */
-        reference at (size_type index) {
+        reference at (size_type index) throw (std:: out_of_range){
             // <your code>
+            if(index >= size())
+                throw std::out_of_range("out of range");
             // dummy is just to be able to compile the skeleton, remove it
-            static value_type dummy;
-            return dummy;}
+            // static value_type dummy;
+            // return dummy
+            return (*this)[index];}
 
         /**
          * @param index a size_type
@@ -665,9 +669,11 @@ class my_deque {
          */
         reference back () {
             // <your code>
+            assert(!empty());
+            return *(end() - 1);
             // dummy is just to be able to compile the skeleton, remove it
-            static value_type dummy;
-            return dummy;}
+            // static value_type dummy;
+            // return dummy;}
 
         /**
          * return const_reference to last element in deque
@@ -702,6 +708,7 @@ class my_deque {
          */
         void clear () {
             // <your code>
+            resize(0);
             assert(valid());}
 
         // -----
@@ -712,7 +719,7 @@ class my_deque {
          * remove all elements in deque
          */
         bool empty () const {
-            return !size();}
+            return size() == 0;}
 
         // ---
         // end
@@ -829,6 +836,15 @@ class my_deque {
          */
         void resize (size_type s, const_reference v = value_type()) {
             // <your code>
+            if(s == size())
+                return;
+            if(s < size())
+                
+            else if( s <= )
+
+            else{
+
+            }
             assert(valid());}
 
         // ----
@@ -840,6 +856,7 @@ class my_deque {
          */
         size_type size () const {
             // <your code>
+            return in_e - in_b;
             return 0;}
 
         // ----
