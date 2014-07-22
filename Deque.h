@@ -131,11 +131,12 @@ class my_deque {
         allocator_type _a;
 
         // <your data>
-        size_type size;
-        pointer* out_b;
-        pointer* out_e;
-        pointer* in_b;
-        pointer* in_e;
+        size_type _size;
+        size_type _capacity;
+        pointer* _out_b;
+        pointer* _out_e;
+        pointer* _in_b;
+        pointer* _in_e;
 
 
 
@@ -262,7 +263,7 @@ class my_deque {
                 reference operator * () const {
                     // <your code>
                     // dummy is just to be able to compile the skeleton, remove it
-                    return *this._d[this._p];}
+                    return *this._d[this->_p];}
 
                 // -----------
                 // operator ->
@@ -564,6 +565,12 @@ class my_deque {
          */
         explicit my_deque (const allocator_type& a = allocator_type()) {
             // <your code>
+            _out_b = 0;
+            _out_e = 0;
+            _in_b = 0;
+            _in_e = 0;
+            _size = 0;
+            _capacity = 0;
             assert(valid());}
 
         /**
