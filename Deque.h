@@ -565,6 +565,7 @@ class my_deque {
          */
         explicit my_deque (const allocator_type& a = allocator_type()) {
             // <your code>
+            _a = a;
             _out_b = 0;
             _out_e = 0;
             _in_b = 0;
@@ -581,14 +582,29 @@ class my_deque {
          */
         explicit my_deque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type()) {
             // <your code>
+            _a = a;
+            _size = s;
+            _out_b = 0;
+            _out_e = 0;
+            _in_b = 0;
+            _in_e = 0;
+            _size = 0;
+            _capacity = 0;
+            uninitialized_fill(_a, _in_b, _in_e, v);
             assert(valid());}
 
         /**
          * @param that is a my_deque reference 
          * copy constructor that constrcut a new instance with my_deque content
          */
-        my_deque (const my_deque& that) {
+        my_deque (const my_deque& that):_a (that._a) {
             // <your code>
+            _in_b = 0;
+            _in_e = _in_b + that.size();
+            _size = _capacity = that.size();
+            _out_e = that->_out_e;
+            _out_b = 0;
+            uninitialized_copy(_a, that.begin(), that.end(), _in_b);
             assert(valid());}
 
         // ----------
@@ -600,6 +616,14 @@ class my_deque {
          */
         ~my_deque () {
             // <your code>
+            if(_in_e > 0 && _out_e > 0){
+                clear();
+                destroy(_a, _in_b, _in_e);
+                _in_e = 0;
+                _out_e = 0;
+                _size = 0;
+                _capacity = 0;
+            }
             assert(valid());}
 
         // ----------
@@ -613,6 +637,22 @@ class my_deque {
          */
         my_deque& operator = (const my_deque& rhs) {
             // <your code>
+            if (this == &rhs)
+                return *this;
+            if (rhs.size() == size())
+                std::copy(rhs.begin(), rhs.end(), begin());
+            else if (rhs.size() < size()) {
+                std::copy(rhs.begin(), rhs.end(), begin());
+                resize(rhs.size());}
+            else if (rhs.size() <= capacity()) {
+                std::copy(rhs.begin(), rhs.begin() + size(), begin());
+                _in_e = my_uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end());
+                _out_e = rhs._out_e;
+            }
+            else {
+                clear();
+                resize(this.size());
+                _in_e = my_uninitialized_copy(_a, rhs.begin(), rhs.end(), begin());}
             assert(valid());
             return *this;}
 
@@ -628,8 +668,7 @@ class my_deque {
         reference operator [] (size_type index) {
             // <your code>
             // dummy is just to be able to compile the skeleton, remove it
-            static value_type dummy;
-            return dummy;}
+            return _a[index];}
 
         /**
          * @param index a size_type
