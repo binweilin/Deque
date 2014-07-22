@@ -534,9 +534,9 @@ class my_deque {
                  * move the reference forward with d elements
                  * return reference to const_iterator
                  */
-                const_iterator& operator += (difference_type) {
+                const_iterator& operator += (difference_type d) {
                     // <your code>
-                    this->_p += 
+                    this->_p += d;
                     assert(valid());
                     return *this;}
 
@@ -549,9 +549,9 @@ class my_deque {
                  * move the reference backward with d elements
                  * return reference to const_iterator
                  */
-                const_iterator& operator -= (difference_type) {
+                const_iterator& operator -= (difference_type d) {
                     // <your code>
-                    this->_p -= 
+                    this->_p -= d;
                     assert(valid());
                     return *this;}};
 
@@ -668,7 +668,7 @@ class my_deque {
         reference operator [] (size_type index) {
             // <your code>
             // dummy is just to be able to compile the skeleton, remove it
-            return _a[index];}
+            return *(_in_b + index);}
 
         /**
          * @param index a size_type
@@ -736,14 +736,14 @@ class my_deque {
          */
         iterator begin () {
             // <your code>
-            return iterator(/* <your arguments> */);}
+            return iterator(_in_b);}
 
         /**
          * return const_reference to first element in deque
          */
         const_iterator begin () const {
             // <your code>
-            return const_iterator(/* <your arguments> */);}
+            return const_iterator(_in_b);}
 
         // -----
         // clear
@@ -776,14 +776,14 @@ class my_deque {
          */
         iterator end () {
             // <your code>
-            return iterator(/* <your arguments> */);}
+            return iterator(_in_e);}
 
         /**
          * return const_iterator to the end of deque
          */
         const_iterator end () const {
             // <your code>
-            return const_iterator(/* <your arguments> */);}
+            return const_iterator(_in_e);}
 
         // -----
         // erase
@@ -795,10 +795,16 @@ class my_deque {
          * every element will move forward
          * return next loation of iterator
          */
-        iterator erase (iterator) {
+        iterator erase (iterator p) {
             // <your code>
+            size_type i = 0;
+            while(i != p._d._size-2){
+                *P = *(p+1);
+                i++;
+            }
+            p._d._size--;
             assert(valid());
-            return iterator();}
+            return p;}
 
         // -----
         // front
@@ -810,8 +816,8 @@ class my_deque {
         reference front () {
             // <your code>
             // dummy is just to be able to compile the skeleton, remove it
-            static value_type dummy;
-            return dummy;}
+
+            return *_d.begin();}
 
         /**
          * return const_reference to value at the front of the deque
@@ -830,8 +836,15 @@ class my_deque {
          * push the remaining elements backward in the deque
          * return iterator to where the value is
          */
-        iterator insert (iterator, const_reference) {
+        iterator insert (iterator p, const_reference v) {
             // <your code>
+            p._d._size++;
+            size_type i = p._d._size -1;
+            while(i >= 0){
+                *(p+i) = *p;
+                i--;
+            }
+            *p = v;
             assert(valid());
             return iterator();}
 
@@ -844,6 +857,8 @@ class my_deque {
          */
         void pop_back () {
             // <your code>
+            _size--;
+            _in_e--;
             assert(valid());}
 
         /**
@@ -851,6 +866,8 @@ class my_deque {
          */
         void pop_front () {
             // <your code>
+            _in_b++;
+            _size--;
             assert(valid());}
 
         // ----
@@ -860,8 +877,11 @@ class my_deque {
         /**
          * add element of the back of the deque
          */
-        void push_back (const_reference) {
+        void push_back (const_reference v) {
             // <your code>
+            *_in_e = v;
+            _size++;
+            _in_e++;
             assert(valid());}
 
         /**
@@ -869,6 +889,9 @@ class my_deque {
          */
         void push_front (const_reference) {
             // <your code>
+            _in_b--;
+            *_in_b = v;
+            _size++;           
             assert(valid());}
 
         // ------
@@ -882,15 +905,15 @@ class my_deque {
          */
         void resize (size_type s, const_reference v = value_type()) {
             // <your code>
-            if(s == size())
+            if (s == size())
                 return;
-            if(s < size())
-                
-            else if( s <= )
-
-            else{
-
-            }
+            if (s < size())
+                _in_e = my_destroy(_a, begin() + s, end());
+            else if (s <= capacity())
+                _in_e = my_uninitialized_fill(_a, end(), begin() + s, v);
+            else {
+                reserve(std::max(2 * size(), s));
+                resize(s, v);}
             assert(valid());}
 
         // ----
@@ -915,6 +938,21 @@ class my_deque {
          */
         void swap (my_deque&) {
             // <your code>
+            if (_a == that._a) {
+                std::swap(_in_b, that._in_b);
+                std::swap(_in_e, that._in_e);
+                std::swap(_out_b, that._out_b);
+                std::swap(_out_e, that._out_e);}
+            else {
+                my_vector x(*this);
+                *this = that;
+                that  = x;}
             assert(valid());}};
+
+        void reserve (size_type c) {
+            if (c > capacity()) {
+                my_deque x(*this, c);
+                swap(x);}
+            assert(valid());}
 
 #endif // Deque_h
