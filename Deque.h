@@ -18,7 +18,7 @@
 #include <stdexcept> // out_of_range
 #include <utility>   // !=, <=, >, >=
 
-#define WIDTH 50;
+#define WIDTH 50
 
 // -----
 // using
@@ -185,7 +185,7 @@ class my_deque {
                  */
                 friend bool operator == (const iterator& lhs, const iterator& rhs) {
                     // <your code>
-                    return (lhs._pos == rhs._pos) && (lhs._d == rhs._d);}
+                    return (lhs._p == rhs._p) && (lhs._d == rhs._d);}
 
                 /**
                  * @param lhs an iterator reference 
@@ -562,7 +562,8 @@ class my_deque {
         // ------------
 
         /**
-         * <your documentation>
+         * @param a an allocator_type reference
+         * set inner,outer array, capacity to size 0
          */
         explicit my_deque (const allocator_type& a = allocator_type()) {
             // <your code>
@@ -586,10 +587,10 @@ class my_deque {
             _a = a;
             _size = s;           
 
-            size_type inner = s/WIDTH;
-            if (s%WIDTH > 0)
+            size_type inner = s / WIDTH;
+            if (s % WIDTH > 0)
                 inner++;
-
+                
             _out_b = _a.allocate(inner);
             _out_e = _out_b + inner;
             for (int i = 0; i < inner; i++)
@@ -756,7 +757,7 @@ class my_deque {
         // -----
 
         /**
-         * <your documentation>
+         * make array size to 0
          */
         void clear () {
             // <your code>
