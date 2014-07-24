@@ -125,7 +125,8 @@ TEST (my_deque, push_back_1){
     ASSERT_TRUE (x.back() ==  5);
     x.push_back(6);
     ASSERT_TRUE (x.size() == 11);
-    ASSERT_TRUE (x.back() ==  6);}
+    ASSERT_TRUE (x.back() ==  6);
+}
 
 TEST (my_deque, push_back_2){
     my_deque<int> x (1, 5);
@@ -136,7 +137,8 @@ TEST (my_deque, push_back_2){
     x.push_back(2);
 
     ASSERT_TRUE (x.size() == 13);
-    ASSERT_TRUE (x.back() ==  2);}
+    ASSERT_TRUE (x.back() ==  2);
+}
 
 TEST (my_deque, push_back_3){
     my_deque<int> x;
@@ -145,7 +147,8 @@ TEST (my_deque, push_back_3){
     x.push_back(2);
     x.push_back(3);
     ASSERT_TRUE (x.size() == 3);
-    ASSERT_TRUE (x.back() == 3);}
+    ASSERT_TRUE (x.back() == 3);
+}
 
 // --------------
 // push_front
@@ -157,7 +160,8 @@ TEST (my_deque, push_front_1){
     ASSERT_TRUE (x.front() ==  5);
     x.push_front(6);
     ASSERT_TRUE (x.size() == 11);
-    ASSERT_TRUE (x.front() ==  6);}
+    ASSERT_TRUE (x.front() ==  6);
+}
 
 TEST (my_deque, push_front_2){
     my_deque<int> x;
@@ -167,7 +171,8 @@ TEST (my_deque, push_front_2){
     x.push_front(4);
     x.push_front(3);
     ASSERT_TRUE (x.size() == 4);
-    ASSERT_TRUE (x.front() ==  3);}
+    ASSERT_TRUE (x.front() ==  3);
+}
 
 TEST (my_deque, push_front_3){
     my_deque<int> x (10, 5);
@@ -180,7 +185,8 @@ TEST (my_deque, push_front_3){
     x.push_front(5);
 
     ASSERT_TRUE (x.size() == 15);
-    ASSERT_TRUE (x.front() == 5);}        
+    ASSERT_TRUE (x.front() == 5);
+}        
 
 
 // -------------
@@ -193,7 +199,8 @@ TEST (my_deque, pop_back_1){
 
     x.pop_back();
     ASSERT_TRUE (x.size() == 9);
-    ASSERT_TRUE (x.back() == 5);}
+    ASSERT_TRUE (x.back() == 5);
+}
 
 TEST (my_deque, pop_back_2){
     my_deque<int> x (10, 5);
@@ -210,7 +217,8 @@ TEST (my_deque, pop_back_2){
     x.pop_back();
     x.pop_back();
 
-    ASSERT_TRUE (x.size() == 0);}
+    ASSERT_TRUE (x.size() == 0);
+}
 
 TEST (my_deque, pop_back_3){
     my_deque<int> x;
@@ -241,7 +249,8 @@ TEST (my_deque, pop_front_1){
 
     x.pop_front();
     ASSERT_TRUE (x.size() == 9);
-    ASSERT_TRUE (x.front() == 5);}
+    ASSERT_TRUE (x.front() == 5);
+}
 
 TEST (my_deque, pop_front_2){
     my_deque<int> x (10, 5);
@@ -258,7 +267,8 @@ TEST (my_deque, pop_front_2){
     x.pop_front();
     x.pop_front();
 
-    ASSERT_TRUE (x.size() == 0);}
+    ASSERT_TRUE (x.size() == 0);
+}
 
 TEST (my_deque, pop_front_3){
     my_deque<int> x;
@@ -279,7 +289,6 @@ TEST (my_deque, pop_front_3){
     ASSERT_TRUE (x.size() == 0);        
 }
 
-
 // ---------
 // back
 // ---------
@@ -287,19 +296,21 @@ TEST (my_deque, pop_front_3){
 TEST (my_deque, back_1){
     my_deque<int> x (10, 5);
     ASSERT_TRUE (x.back() == 5);
-    ASSERT_TRUE (&x.back() == &x.at(19));}
+    ASSERT_TRUE (&x.back() == &x.at(19));
+}
 
 TEST (my_deque, back_2){
     my_deque<int> x (1, 5);
     ASSERT_TRUE (x.back() == 5);
-    ASSERT_TRUE (&x.back() == &x.at(0));}
+    ASSERT_TRUE (&x.back() == &x.at(0));
+}
 
 TEST (my_deque, back_3){
     my_deque<int> x (10, 10);
     x.back() = 15;
     ASSERT_TRUE (x.back() == 15);
-    ASSERT_TRUE (&x.back() == &x.at(9));}
-
+    ASSERT_TRUE (&x.back() == &x.at(9));
+}
 
 // ------------------------
 // const_reference_back
@@ -308,19 +319,21 @@ TEST (my_deque, back_3){
 TEST (my_deque, const_back_1){
     my_deque<int> x (10, 5);
     ASSERT_TRUE (x.back() == 5);
-    ASSERT_TRUE (&x.back() == &x.at(19));}
+    ASSERT_TRUE (&x.back() == &x.at(19));
+}
 
 TEST (my_deque, const_back_2){
     my_deque<int> x (1, 5);
     ASSERT_TRUE (x.back() == 5);
-    ASSERT_TRUE (&x.back() == &x.at(0));}
+    ASSERT_TRUE (&x.back() == &x.at(0));
+}
 
 TEST (my_deque, const_back_3){
     my_deque<int> x (10, 10);
     x.back() = 15;
     ASSERT_TRUE (x.back() == 15);
-    ASSERT_TRUE (&x.back() == &x.at(9));}    
-
+    ASSERT_TRUE (&x.back() == &x.at(9));
+}    
 
 // ---------
 // front
@@ -329,21 +342,23 @@ TEST (my_deque, const_back_3){
 TEST (my_deque, front_1){
     my_deque<int> x (10, 5);
     ASSERT_TRUE (x.front() == 5);
-    ASSERT_TRUE (&x.front() == &x.at(0));}
+    ASSERT_TRUE (&x.front() == &x.at(0));
+}
 
 TEST (my_deque, front_2){
     my_deque<int> x (10, 5);
     x.push_front(6);
     ASSERT_TRUE (x.front() == 6);
-    ASSERT_TRUE (&x.front() == &x.at(0));}
+    ASSERT_TRUE (&x.front() == &x.at(0));
+}
 
 TEST (my_deque, front_3){
     my_deque<int> x (10, 10);
     ASSERT_TRUE (x.front() == 10);
     x.front() = 15;
     ASSERT_TRUE (x.front() == 15);
-    ASSERT_TRUE (&x.front() == &x.at(0));}
-
+    ASSERT_TRUE (&x.front() == &x.at(0));
+}
 
 
 // ------------------------
@@ -353,20 +368,23 @@ TEST (my_deque, front_3){
 TEST (my_deque, const_front_1){
     my_deque<int> x (10, 5);
     ASSERT_TRUE (x.front() == 5);
-    ASSERT_TRUE (&x.front() == &x.at(0));}
+    ASSERT_TRUE (&x.front() == &x.at(0));
+}
 
 TEST (my_deque, const_front_2){
     my_deque<int> x (10, 5);
     x.push_front(6);
     ASSERT_TRUE (x.front() == 6);
-    ASSERT_TRUE (&x.front() == &x.at(0));}
+    ASSERT_TRUE (&x.front() == &x.at(0));
+}
 
 TEST (my_deque, const_front_3){
     my_deque<int> x (10, 10);
     ASSERT_TRUE (x.front() == 10);
     x.front() = 15;
     ASSERT_TRUE (x.front() == 15);
-    ASSERT_TRUE (&x.front() == &x.at(0));}
+    ASSERT_TRUE (&x.front() == &x.at(0));
+}
 
 // ----------
 // begin
@@ -377,14 +395,16 @@ TEST (my_deque, begin_1){
     my_deque<int>::iterator i = x.begin();
     ASSERT_TRUE(*i == 5);
     ASSERT_TRUE(&*i == &x[0]);
-    ASSERT_TRUE(&*i == &x.front());}
+    ASSERT_TRUE(&*i == &x.front());
+}
 
 TEST (my_deque, begin_2){
     my_deque<int> x (1, 5);
     my_deque<int>::iterator i = x.begin();
     ASSERT_TRUE(*i == 5);
     ASSERT_TRUE(&*i == &x[0]);
-    ASSERT_TRUE(&*i == &x.front());}
+    ASSERT_TRUE(&*i == &x.front());
+}
 
 TEST (my_deque, begin_3){
     my_deque<int> x (10, 5);
@@ -407,14 +427,16 @@ TEST (my_deque, const_begin_1){
     const my_deque<int>::iterator i = x.begin();
     ASSERT_TRUE(*i == 5);
     ASSERT_TRUE(&*i == &x[0]);
-    ASSERT_TRUE(&*i == &x.front());}
+    ASSERT_TRUE(&*i == &x.front());
+}
 
 TEST (my_deque, const_begin_2){
     my_deque<int> x (1, 5);
     const my_deque<int>::iterator i = x.begin();
     ASSERT_TRUE(*i == 5);
     ASSERT_TRUE(&*i == &x[0]);
-    ASSERT_TRUE(&*i == &x.front());}
+    ASSERT_TRUE(&*i == &x.front());
+}
 
 TEST (my_deque, const_begin_3){
     my_deque<int> x (10, 5);
@@ -423,7 +445,8 @@ TEST (my_deque, const_begin_3){
     *i = 20;
     ASSERT_TRUE(*i == 20);
     ASSERT_TRUE(&*i == &x[0]);
-    ASSERT_TRUE(&*i == &x.front());}      
+    ASSERT_TRUE(&*i == &x.front());
+}      
 
 // ----------
 // end
@@ -435,7 +458,8 @@ TEST (my_deque, end_1){
     --i;
     ASSERT_TRUE(*i == 5);
     ASSERT_TRUE(&*i == &x[9]);
-    ASSERT_TRUE(&*i == &x.back());}
+    ASSERT_TRUE(&*i == &x.back());
+}
 
 TEST (my_deque, end_2){
     my_deque<int> x (10, 5);
@@ -445,7 +469,8 @@ TEST (my_deque, end_2){
     *i = 20;
     ASSERT_TRUE(*i == 20);
     ASSERT_TRUE(&*i == &x[9]);
-    ASSERT_TRUE(&*i == &x.back());}
+    ASSERT_TRUE(&*i == &x.back());
+}
 
 TEST (my_deque, end_3){
     my_deque<int> x (1, 5);
@@ -454,7 +479,8 @@ TEST (my_deque, end_3){
     --i;
     ASSERT_TRUE(*i == *j);
     ASSERT_TRUE(i == j);
-    ASSERT_TRUE(&*i == &*j);}       
+    ASSERT_TRUE(&*i == &*j);
+}       
 
 // ----------
 // const_end
@@ -736,6 +762,31 @@ TEST (my_deque, size_3){
     ASSERT_TRUE (x.size() == 3);
     ASSERT_TRUE (x.back() == 3);}
 
+
+// ---------
+// empty
+// ---------
+
+TEST (my_deque, empty_1){
+    my_deque<int> x (10, 5);
+    ASSERT_FALSE(x.empty());}
+
+TEST (my_deque, empty_2){
+    my_deque<int> x (1, 5);
+    ASSERT_TRUE (x.size() == 10);
+    x.push_back(2);
+    x.push_back(2);
+    x.push_back(2);
+    ASSERT_FALSE(x.empty());}
+
+TEST (my_deque, empty_3){
+    my_deque<int> x;
+    ASSERT_TRUE (x.size() == 0);
+    x.push_back(1);
+    x.push_back(2);
+    x.push_back(3);
+    ASSERT_FALSE(x.empty());}    
+
 // ---------------------
 // fill_constructor
 // ---------------------
@@ -760,6 +811,37 @@ TEST(my_deque, fill_constructor_3){
 // copy_constructor
 // ---------------------
 
+TEST(my_deque, copy_constructor_1){
+    my_deque<int> x;
+    x.push_back(1);
+    x.push_back(2);
+    x.push_back(3);
+    ASSERT_TRUE(x.size() == 3);
+    my_deque<int> y(x);
+    y.push_back(4);
+    ASSERT_TRUE(y.size() == 4);}
+
+TEST(my_deque, copy_constructor_2){
+    my_deque<int> x;
+    x.push_back(1);
+    x.push_back(2);
+    x.push_back(3);
+    ASSERT_TRUE(x.size() == 3);
+    my_deque<int> y(x);
+    x.push_back(5);
+    y.push_back(4);
+    ASSERT_TRUE(y.size() == 4);}
+
+TEST(my_deque, copy_constructor_3){
+    my_deque<int> x;
+    x.push_back(1);
+    x.push_back(2);
+    x.push_back(3);
+    ASSERT_TRUE(x.size() == 3);
+    my_deque<int> y(x);
+    y.push_back(4);
+    y.push_back(5);
+    ASSERT_TRUE(y.size() == 5);}
 
 // ---------------
 // assignment
@@ -910,21 +992,10 @@ TEST (my_deque, swap_3){
     ASSERT_TRUE(x.front() == 1);
     ASSERT_TRUE(y.front() == 5);}
 
-// -------------
+
+/***********************************************************/
 // TestIterator
-// -------------
-
-// -------------------------
-// test_iterator_constructor
-// -------------------------
-
-
-
-
-// -------------------------
-// test_iterator_dereference
-// -------------------------
-
+/***********************************************************/
 
 // -------------------
 // iterator_equal
@@ -938,28 +1009,69 @@ TEST(Iterator, equality_1){
 }
 
 TEST(Iterator, equality_2){
-    my_deque<int> x (10,5);
+    my_deque<int> x (5,5);
     my_deque<int>::iterator i1 = x.begin();
     my_deque<int>::iterator i2 = x.begin();
     ASSERT_TRUE(i1 == i2);
 }
 
 TEST(Iterator, equality_3){
+    my_deque<int> x (7,7);
+    my_deque<int>::iterator i1 = x.begin();
+    my_deque<int>::iterator i2 = x.begin();
+    ASSERT_TRUE(i1 == i2);
+}
+
+// -------------------------
+// const_iterator_equal
+// -------------------------
+
+TEST(Iterator, const_equality_1){
     my_deque<int> x (10,5);
     my_deque<int>::iterator i1 = x.begin();
     my_deque<int>::iterator i2 = x.begin();
     ASSERT_TRUE(i1 == i2);
 }
 
+TEST(Iterator, const_equality_2){
+    my_deque<int> x (5,5);
+    my_deque<int>::iterator i1 = x.begin();
+    my_deque<int>::iterator i2 = x.begin();
+    ASSERT_TRUE(i1 == i2);
+}
+
+TEST(Iterator, const_equality_3){
+    my_deque<int> x (7,7);
+    my_deque<int>::iterator i1 = x.begin();
+    my_deque<int>::iterator i2 = x.begin();
+    ASSERT_TRUE(i1 == i2);
+}
 
 
-// -------------------------
-// const_iterator_equal
-// -------------------------
+// -------------------
+// iterator_not_equal
+// -------------------
 
+TEST(Iterator, not_equality_1){
+    my_deque<int> x (10,5);
+    my_deque<int>::iterator i1 = x.begin();
+    my_deque<int>::iterator i2 = x.end();
+    ASSERT_TRUE(i1 != i2);
+}
 
+TEST(Iterator, not_equality_2){
+    my_deque<int> x (10,5);
+    my_deque<int>::iterator i1 = x.begin();
+    my_deque<int>::iterator i2 = x.begin() +1;
+    ASSERT_TRUE(i1 != i2);
+}
 
-
+TEST(Iterator, not_equality_3){
+    my_deque<int> x (10,5);
+    my_deque<int>::iterator i1 = x.begin()+2;
+    my_deque<int>::iterator i2 = x.begin();
+    ASSERT_TRUE(i1 != i2);
+}
 
 // ----------------
 // iterator_++
@@ -1107,8 +1219,7 @@ TEST(Iterator, const_plus_equal_1){
     my_deque<int> x (10,5);
     my_deque<int>::iterator i = x.begin();
     i += 4;
-    ASSERT_TRUE(*i == 5);
-}
+    ASSERT_TRUE(*i == 5);}
 
 TEST(Iterator, const_plus_equal_2){
     my_deque<int> x (10,5);
@@ -1179,27 +1290,78 @@ TEST(Iterator, const_minus_equal_3){
 }
 
 // -------------------
-// test_iterator_valid
+// iterator_valid
 // -------------------
 
+TEST (Iterator, valid_1) {
+    my_deque<int> x;
+    my_deque<int>::iterator i = x.begin();
+    ASSERT_TRUE (i.valid());
+}
 
-// --------------------
-// Const Iterator Tests
-// --------------------
+TEST (Iterator, valid_2) {
+    my_deque<int> x;
+    my_deque<int>::iterator i = x.end();
+    ASSERT_TRUE (i.valid());
+}
 
-// -------------------------------
-// test_const_iterator_constructor
-// -------------------------------
-
-
-// -------------------------------
-// test_const_iterator_dereference
-// -------------------------------
-
-
-
-
+TEST (Iterator, valid_3) {
+    my_deque<int> x (10, 5);
+    my_deque<int>::iterator i = x.begin();
+    ASSERT_TRUE (i.valid());
+}
 
 // -------------------------
-// test_const_iterator_valid
+// const_iterator_valid
 // -------------------------
+
+TEST (Iterator, const_valid_1) {
+    my_deque<int> x;
+    my_deque<int>::iterator i = x.begin();
+    ASSERT_TRUE (i.valid());
+}
+
+TEST (Iterator, const_valid_2) {
+    my_deque<int> x;
+    my_deque<int>::iterator i = x.end();
+    ASSERT_TRUE (i.valid());
+}
+
+TEST (Iterator, const_valid_3) {
+    my_deque<int> x (10, 5);
+    my_deque<int>::iterator i = x.begin();
+    ASSERT_TRUE (i.valid());
+}
+
+// -----
+// star
+// ------
+
+TEST(Iterator, star_1){
+    my_deque<int> x (10, 5);
+    my_deque<int>::iterator i = x.begin();
+    *i = 9;
+    ASSERT_TRUE(x.size() == 10);
+    ASSERT_TRUE(x[0] == 0);
+}
+
+TEST(Iterator, star_2){
+    my_deque<int> x (10, 5);
+    my_deque<int>::iterator i = x.begin();
+    i++;
+    *i = 6;
+    ASSERT_TRUE(x.size() == 10);
+    ASSERT_TRUE(x[1] == 6);
+}
+
+TEST(Iterator, star_3){
+    my_deque<int> x;
+    x.push_back(1);
+    x.push_back(2);
+    my_deque<int>::iterator i = x.begin();
+    ASSERT_TRUE(x.size() == 2);
+    *i = 10;
+    ASSERT_TRUE(x[0] == 10);
+}    
+
+
