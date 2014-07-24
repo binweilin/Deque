@@ -1256,8 +1256,8 @@ TEST (my_deque, insert_1){
     my_deque<int>::iterator p = x.end();
     x.insert(p-1, 3);
     ASSERT_TRUE (x.size() == 11);
-    ASSERT_TRUE (x[9] == 5);
-    ASSERT_TRUE (x[10] == 3);}
+    ASSERT_TRUE (x[9] == 3);
+    ASSERT_TRUE (x[10] == 5);}
 
 TEST (my_deque, insert_2){
     my_deque<int> x (10,5);
@@ -1284,8 +1284,10 @@ TEST (my_deque, insert_4){
     x.insert(p-1, 3);
     x.insert(p-2, 3);
     ASSERT_TRUE (x.size() == 12);
+    ASSERT_TRUE (x[9] == 3);
+    ASSERT_TRUE (x[10] == 3);
     ASSERT_TRUE (x[8] == 5);
-    ASSERT_TRUE (x[11] == 3);}
+    ASSERT_TRUE (x[11] == 5);}
 
 TEST (my_deque, insert_5){
     my_deque<int> x (10,5);
@@ -1294,6 +1296,8 @@ TEST (my_deque, insert_5){
     x.insert(p+1, 3);
     ASSERT_TRUE (x.size() == 12);
     ASSERT_TRUE (x[0] == 3);
+    SSERT_TRUE (x[1] == 3);
+    SSERT_TRUE (x[2] == 3);
     ASSERT_TRUE (x[11] == 5);}
 
  TEST (my_deque, insert_6){
