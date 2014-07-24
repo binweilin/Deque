@@ -17,9 +17,10 @@
 #include <memory>    // allocator
 #include <stdexcept> // out_of_range
 #include <utility>   // !=, <=, >, >=
+#include <iostream> 
 
 #define WIDTH 50
-
+using namespace std;
 // -----
 // using
 // -----
@@ -96,6 +97,9 @@ class my_deque {
         typedef typename allocator_type::reference       reference;
         typedef typename allocator_type::const_reference const_reference;
 
+        typedef typename allocator_type::template rebind<T*>::other allocator_type2;
+        typedef typename allocator_type2::pointer pointer2;
+
     public:
         // -----------
         // operator ==
@@ -133,14 +137,20 @@ class my_deque {
         allocator_type _a;
 
         // <your data>
+        allocator_type2 _a2;
+
         size_type _size;
         size_type _capacity;
-        pointer _out_b;
-        pointer _out_e;
-        pointer _in_b;
-        pointer _in_e;
 
+        pointer2 _out_b;
+        pointer2 _out_e;
+        pointer  _in_b;
+        pointer  _in_e;
 
+        pointer _af;
+        pointer _ae;
+        pointer _uf;
+        pointer _ue;
 
     private:
         // -----
@@ -149,11 +159,24 @@ class my_deque {
 
         bool valid () const {
             // <your code>
-            if(_out_b < _out_e && _in_b < _in_e && _size > 0)
-                return true;
-            if(_out_b == 0 && _out_e == 0 && _in_b == 0 && _in_e == 0 && _size == 0)
-                return true;
-            return false;
+            //cout << "af " << _af <<endl<<"ae " << _ae <<endl<< _uf <<endl<< _ue <<endl<<_size<<endl;
+            //cout<< "minus " <<_ue - _uf;
+            // if(_af < _ae && _uf < _ue && _size > 0)
+            //     return true;
+            // if(_af == 0 && _ae == 0 && _uf == 0 && _ue == 0 && _size == 0)
+            //     return true;
+            // return false;
+            return (!_ae && !_af && !_ue && !_uf) ||
+                ((_af <= _uf) && (_uf <= _ue) && (_ue <= _ae));
+        }
+
+        my_deque(my_deque& that, size_type s): _a(that._a), _a2(){
+            _uf = _af = _a.allocate(s);
+            _out_b = _out_e = 0;
+            _in_b = _in_e;
+            _ue = _ae = _uf + s;
+            uninitialized_copy(_a, that.begin(), that.end(), begin());
+            assert(valid());
         }
 
     public:
@@ -264,7 +287,7 @@ class my_deque {
                 reference operator * () const {
                     // <your code>
                     // dummy is just to be able to compile the skeleton, remove it
-                    return _d->at(_p);}
+                    return (*_d)[_p];}
 
                 // -----------
                 // operator ->
@@ -287,7 +310,7 @@ class my_deque {
                 iterator& operator ++ () {
                     // <your code>
                     assert(valid());
-                    this->_p++;
+                    _p++;
                     return *this;}
 
                 /**
@@ -312,7 +335,7 @@ class my_deque {
                 iterator& operator -- () {
                     // <your code>
                     assert(valid());
-                    this->_p--;
+                    _p--;
                     return *this;}
 
                 /**
@@ -338,7 +361,7 @@ class my_deque {
                 iterator& operator += (difference_type d) {
                     // <your code>
                     assert(valid());
-                    this->_p += d;
+                    _p += d;
                     return *this;}
 
                 // -----------
@@ -353,7 +376,7 @@ class my_deque {
                 iterator& operator -= (difference_type d) {
                     // <your code>
                     assert(valid());
-                    this->_p -= d;
+                    _p -= d;
                     return *this;}};
 
     public:
@@ -385,7 +408,7 @@ class my_deque {
                  */
                 friend bool operator == (const const_iterator& lhs, const const_iterator& rhs) {
                     // <your code>
-                    return (lhs._pos == rhs._pos) && (lhs._d == rhs._d);}
+                    return (lhs._p == rhs._p) && (lhs._d == rhs._d);}
 
                 /**
                  * @param lhs a const const_iterator reference 
@@ -464,7 +487,7 @@ class my_deque {
                 reference operator * () const {
                     // <your code>
                     // dummy is just to be able to compile the skeleton, remove it
-                    return _d->at(_p);}
+                    return (*_d)[_p];}
 
                 // -----------
                 // operator ->
@@ -486,7 +509,7 @@ class my_deque {
                  */
                 const_iterator& operator ++ () {
                     // <your code>
-                    this->_p++;
+                    _p++;
                     assert(valid());
                     return *this;}
 
@@ -537,7 +560,7 @@ class my_deque {
                  */
                 const_iterator& operator += (difference_type d) {
                     // <your code>
-                    this->_p += d;
+                    _p += d;
                     assert(valid());
                     return *this;}
 
@@ -552,7 +575,7 @@ class my_deque {
                  */
                 const_iterator& operator -= (difference_type d) {
                     // <your code>
-                    this->_p -= d;
+                    _p -= d;
                     assert(valid());
                     return *this;}};
 
@@ -565,13 +588,17 @@ class my_deque {
          * @param a an allocator_type reference
          * set inner,outer array, capacity to size 0
          */
-        explicit my_deque (const allocator_type& a = allocator_type()) {
+        explicit my_deque (const allocator_type& a = allocator_type()): _a(a), _a2() {
             // <your code>
             _a = a;
             _out_b = 0;
             _out_e = 0;
             _in_b = 0;
             _in_e = 0;
+            _ue = 0;
+            _uf = 0;
+            _ae = 0;
+            _af = 0;
             _size = 0;
             _capacity = 0;
             assert(valid());}
@@ -582,23 +609,32 @@ class my_deque {
          * @param a an allocator_type reference
          * construct an instance with s, v, a given value.
          */
-        explicit my_deque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type()) {
+        explicit my_deque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type()): _a(a), _a2() {
             // <your code>
-            _a = a;
             _size = s;           
 
             size_type inner = s / WIDTH;
             if (s % WIDTH > 0)
                 inner++;
                 
-            _out_b = _a.allocate(inner);
+            _out_b = _a2.allocate(inner);
             _out_e = _out_b + inner;
-            for (int i = 0; i < inner; i++)
-                _out_b[i].allocate(WIDTH);
+            for (size_type i = 0; i < inner; i++)
+                _out_b[i] = _a.allocate(WIDTH);
 
             _in_b = _out_b[0];
             _in_e = _out_b[inner-1] + s - WIDTH*(inner-1);
-            _capacity = WIDTH * inner;
+
+            for (size_type i = 0; i < inner; ++i) {
+                _a.deallocate(_out_b[i], WIDTH);
+            }
+
+            _a2.deallocate(_out_b, inner);
+            _af = _uf = _a.allocate(s);
+            _ae = _ue = _uf + s;
+
+            _capacity = _ae - _af;
+
             uninitialized_fill(_a, begin(), end(), v);
             assert(valid());}
 
@@ -606,14 +642,19 @@ class my_deque {
          * @param that is a my_deque reference 
          * copy constructor that constrcut a new instance with my_deque content
          */
-        my_deque (const my_deque& that):_a (that._a) {
+        my_deque (const my_deque& that):_a (that._a), _a2() {
             // <your code>
-            _in_b = 0;
-            _in_e = _in_b + that.size();
-            _size = _capacity = that.size();
-            _out_e = that->_out_e;
-            _out_b = 0;
-            uninitialized_copy(_a, that.begin(), that.end(), _in_b);
+            _out_b = _out_e = 0;
+            _in_b = _in_e;
+            _af = _uf = _a.allocate(that.size());
+            _ae = _ue = _af + that.size();
+            _capacity = _ae - _af;
+            _size = that._size;
+
+            uninitialized_copy(_a, that.begin(), that.end(), begin());
+            cout<<"this"<<endl;
+            for(int i = 0; i < 5; i ++)
+                cout << *this[i] <<endl;
             assert(valid());}
 
         // ----------
@@ -625,13 +666,10 @@ class my_deque {
          */
         ~my_deque () {
             // <your code>
-            if(_in_e > 0 || _out_e > 0){
+            if(_af > 0){
                 clear();
-                _a.deallocate(_in_b, _capacity);
-                _in_e = 0;
-                _out_e = 0;
+                _a.deallocate(_af, _capacity);
                 _size = 0;
-                _capacity = 0;
             }
             assert(valid());}
 
@@ -646,22 +684,28 @@ class my_deque {
          */
         my_deque& operator = (const my_deque& rhs) {
             // <your code>
-            if (this == &rhs)
+            if (this == &rhs){
+                cout <<"==  "<<endl;
                 return *this;
-            if (rhs.size() == size())
+            }
+            if (rhs.size() == size()){
+                cout <<"size "<<endl;
                 std::copy(rhs.begin(), rhs.end(), begin());
+            }
             else if (rhs.size() < size()) {
+                cout <<"< "<<endl;
                 std::copy(rhs.begin(), rhs.end(), begin());
                 resize(rhs.size());}
             else if (rhs.size() <= _capacity) {
+                cout <<"<= "<<endl;
                 std::copy(rhs.begin(), rhs.begin() + size(), begin());
-                _in_e = uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end());
-                _out_e = rhs._out_e;
+                _ue = &(*uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end()));
             }
             else {
+                cout <<"else "<<endl;
                 clear();
-                reserve(rhs.size());
-                _in_e = uninitialized_copy(_a, rhs.begin(), rhs.end(), begin());}
+                my_deque x(rhs);
+                swap(x);}
             assert(valid());
             return *this;}
 
@@ -677,7 +721,7 @@ class my_deque {
         reference operator [] (size_type index) {
             // <your code>
             // dummy is just to be able to compile the skeleton, remove it
-            return begin()[index];}
+            return *(_uf+index);}
 
         /**
          * @param index a size_type
@@ -722,7 +766,7 @@ class my_deque {
         reference back () {
             // <your code>
             assert(!empty());
-            return *(end() - 1);
+            return *(_ue - 1);
             // dummy is just to be able to compile the skeleton, remove it
             // static value_type dummy;
             // return dummy;
@@ -743,14 +787,14 @@ class my_deque {
          */
         iterator begin () {
             // <your code>
-            return _in_b;}
+            return iterator(this, 0);}
 
         /**
          * return const_reference to first element in deque
          */
         const_iterator begin () const {
             // <your code>
-            return const_cast<my_deque&>(*this).begin();}
+            return const_iterator(this, 0);}
 
         // -----
         // clear
@@ -762,6 +806,7 @@ class my_deque {
         void clear () {
             // <your code>
             resize(0);
+            _size = 0;
             assert(valid());}
 
         // -----
@@ -783,14 +828,18 @@ class my_deque {
          */
         iterator end () {
             // <your code>
-            return _in_e;}
+            //cout<<"here2!!!!!!!!!!!!!!"<<endl;
+            //cout<<"size "<<size()<<endl;
+            return iterator(this, size() );}
 
         /**
          * return const_iterator to the end of deque
          */
         const_iterator end () const {
             // <your code>
-            return const_cast<my_deque&>(*this).end();}
+            //cout<<"here!!!!!!!!!!!!!!"<<endl;
+            //cout<<size()<<endl;
+            return const_iterator(this, size()-1);}
 
         // -----
         // erase
@@ -804,14 +853,14 @@ class my_deque {
          */
         iterator erase (iterator p) {
             // <your code>
-            size_type i = 0;
-            while(i != p._d._size-2){
-                *p = *(p+1);
-                i++;
-            }
-            p._d._size--;
+            if(p == end() - 1)
+                pop_back();
+            else {
+                std::copy(p+1, end(), p);
+                resize(size()-1);}
+            _size--;
             assert(valid());
-            return p;}
+            return iterator(this);}
 
         // -----
         // front
@@ -845,13 +894,19 @@ class my_deque {
          */
         iterator insert (iterator p, const_reference v) {
             // <your code>
-            p._d._size++;
-            size_type i = p._d._size -1;
-            while(i >= 0){
-                *(p+i) = *p;
-                i--;
-            }
-            *p = v;
+           if(p == end())
+                push_back(v);
+            else if(p == begin())
+                push_front(v);
+            else {
+                resize(size()+1);
+                iterator it = end();
+                while(it != p-1){
+                    *it = *(it-1);
+                    it--; 
+                }
+                *p = v;
+                }
             assert(valid());
             return iterator();}
 
@@ -863,8 +918,13 @@ class my_deque {
          * remove element of the back of the deque
          */
         void pop_back () {
-            // <your code>
+            // <your code>               x.push_back(4);cout<<"2 "<<x[2]<<endl;
+
+            assert(!empty() );
+            //cout <<"here!!!!!"<<endl;
             resize(size() - 1);
+            _size--;
+            //cout<<"ue2 "<<_ue<<endl;
             assert(valid());}
 
         /**
@@ -872,7 +932,9 @@ class my_deque {
          */
         void pop_front () {
             // <your code>
-            resize(size() + 1);
+            destroy(_a, begin(), begin()+1);
+            ++_uf;
+            _size--;
             assert(valid());}
 
         // ----
@@ -883,8 +945,11 @@ class my_deque {
          * add element of the back of the deque
          */
         void push_back (const_reference v) {
-            // <your code>
+            // <your code>    
+            //cout<<"push back"<<endl;      
             resize(size() + 1, v);
+
+            _size++;
             assert(valid());}
 
         /**
@@ -892,13 +957,11 @@ class my_deque {
          */
         void push_front (const_reference v) {
             // <your code>
-            resize(size() + 1, v);           
-            assert(valid());}
+            if (_af == _uf) 
+                resize(size() + 1);
 
-        void reserve (size_type c) {
-            if (c > _capacity) {
-                my_deque x(*this, c);
-                swap(x);}
+            std::copy(begin(), end(), begin()+1);
+            _a.construct(&*begin(), v);           
             assert(valid());}
 
         // ------
@@ -912,15 +975,32 @@ class my_deque {
          */
         void resize (size_type s, const_reference v = value_type()) {
             // <your code>
-            if (s == size())
+
+            if (s == size()){
+                //cout << "=="<<endl;
                 return;
-            if (s < size())
-                _in_e = destroy(_a, begin() + s, end());
-            else if (s <= _capacity)
-                _in_e = uninitialized_fill(_a, end(), begin() + s, v);
+            }
+            if (s < size()){
+                //cout << "<"<<endl;
+                //cout<<"s "<<s<<endl;
+                _ue = &*destroy(_a, begin() + s, end());
+                //cout<<"ue "<<_ue<<endl;
+            }
+            else if (s <= _capacity){
+                //cout << "<="<<endl;
+                _ue = &*uninitialized_fill(_a, end(), begin() + s, v);
+            }
             else {
-                reserve(std::max(2 * size(), s));
-                resize(s, v);}
+                //cout <<"else\n";
+                size_type si = std::max(2*size()+1, s);
+                my_deque x(si, v);
+                std::copy(begin(), end(), x.begin());
+                //_uf = x.begin();
+                //_ue = x.end();
+                swap(x);
+                resize(s, v);
+            }
+            _size = _ue - _uf;
             assert(valid());}
 
         // ----
@@ -932,7 +1012,7 @@ class my_deque {
          */
         size_type size () const {
             // <your code>
-            return _size;
+            return _ue-_uf;
         }
 
         // ----
@@ -946,10 +1026,10 @@ class my_deque {
         void swap (my_deque& that) {
             // <your code>
             if (_a == that._a) {
-                std::swap(_in_b, that._in_b);
-                std::swap(_in_e, that._in_e);
-                std::swap(_out_b, that._out_b);
-                std::swap(_out_e, that._out_e);}
+                std::swap(_ue, that._ue);
+                std::swap(_uf, that._uf);
+                std::swap(_ae, that._ae);
+                std::swap(_af, that._af);}
             else {
                 my_deque x(*this);
                 *this = that;
