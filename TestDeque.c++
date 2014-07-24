@@ -686,9 +686,9 @@ TEST (my_deque, begin_6){
 // const_begin
 // ----------
 
-TEST (my_deque, const_begin_1){
+TEST (Iterator, const_begin_1){
     my_deque<int> x (10, 5);
-    const my_deque<int>::iterator i = x.begin();
+    my_deque<int>::iterator i = x.begin();
     ASSERT_TRUE(*i == 5);
     ASSERT_TRUE(&*i == &x[0]);
     ASSERT_TRUE(&*i == &x.front());
@@ -696,7 +696,7 @@ TEST (my_deque, const_begin_1){
 
 TEST (my_deque, const_begin_2){
     my_deque<int> x (1, 5);
-    const my_deque<int>::iterator i = x.begin();
+    my_deque<int>::iterator i = x.begin();
     ASSERT_TRUE(*i == 5);
     ASSERT_TRUE(&*i == &x[0]);
     ASSERT_TRUE(&*i == &x.front());
@@ -704,7 +704,7 @@ TEST (my_deque, const_begin_2){
 
 TEST (my_deque, const_begin_3){
     my_deque<int> x (10, 5);
-    const my_deque<int>::iterator i = x.begin();
+    my_deque<int>::iterator i = x.begin();
     ASSERT_TRUE(*i == 5);
     *i = 20;
     ASSERT_TRUE(*i == 20);
@@ -810,20 +810,20 @@ TEST (my_deque, end_6){
 
 TEST (my_deque, const_end_1){
     my_deque<int> x (10, 5);
-    const my_deque<int>::iterator i = x.end();
+    my_deque<int>::iterator i = x.end();
     ASSERT_TRUE(*i == 5);
     ASSERT_TRUE(&*i == &x[9]);
     ASSERT_TRUE(&*i == &x.back());}
 
 TEST (my_deque, const_end_2){
     my_deque<int> x (10, 5);
-    const my_deque<int>::iterator i = x.end();
+    my_deque<int>::iterator i = x.end();
     ASSERT_TRUE(*i == 5);;}
 
 TEST (my_deque, const_end_3){
     my_deque<int> x (1, 5);
-    const my_deque<int>::iterator i = x.end();
-    const my_deque<int>::iterator j = x.begin();
+    my_deque<int>::iterator i = x.end();
+    my_deque<int>::iterator j = x.begin();
     ASSERT_TRUE(i != j);}       
 
 TEST (my_deque, const_end_4){
@@ -1089,7 +1089,7 @@ TEST (my_deque, at_6) {
     ASSERT_TRUE(&x.at(0) == &x[0]);
     x.push_back(15);
     try {
-        ASSERT_TRUE(x.at(5) == 15);
+        ASSERT_TRUE(x.at(10) == 15);
         ASSERT_TRUE(true);
     } catch (...) {
         ASSERT_TRUE(false);
@@ -1616,6 +1616,7 @@ TEST (my_deque, resize_4) {
     ASSERT_TRUE(x[0] == 7);
     ASSERT_TRUE(x[1] == 9);
 }
+
 
 
 // ----------
