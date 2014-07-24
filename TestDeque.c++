@@ -131,13 +131,13 @@ TEST (my_deque, push_back_1){
 
 TEST (my_deque, push_back_2){
     my_deque<int> x (1, 5);
-    ASSERT_TRUE (x.size() == 10);
+    ASSERT_TRUE (x.size() ==  1);
     ASSERT_TRUE (x.back() ==  5);
     x.push_back(2);
     x.push_back(2);
     x.push_back(2);
 
-    ASSERT_TRUE (x.size() == 13);
+    ASSERT_TRUE (x.size() ==  4);
     ASSERT_TRUE (x.back() ==  2);
 }
 
