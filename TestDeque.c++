@@ -391,9 +391,9 @@ TEST (my_deque, pop_front_3){
     ASSERT_TRUE (x.size() == 4);
     ASSERT_TRUE (x.front() ==  3); 
 
-    x.pop_back();
+    x.pop_front();
     ASSERT_TRUE (x.size() == 3);  
-    ASSERT_TRUE (x.front() ==  4);  
+    ASSERT_TRUE (x.front() == 4);  
     x.pop_front();
     ASSERT_TRUE (x.size() == 2);        
 }
@@ -407,7 +407,7 @@ TEST (my_deque, pop_front_4){
     x.push_front(3);
     ASSERT_TRUE (x.size() == 4);
     ASSERT_TRUE (x.front() ==  3); 
-    x.pop_back();
+    x.pop_front();
     ASSERT_TRUE (x.size() == 3);  
     ASSERT_TRUE (x.front() ==  4);  
     x.pop_front();
@@ -424,7 +424,7 @@ TEST (my_deque, pop_front_5){
     ASSERT_TRUE (x.size() == 4);
     ASSERT_TRUE (x.front() ==  3); 
 
-    x.pop_back();
+    x.pop_front();
     ASSERT_TRUE (x.size() == 3);  
     ASSERT_TRUE (x.front() ==  4);        
 }
@@ -439,7 +439,7 @@ TEST (my_deque, pop_front_6){
     ASSERT_TRUE (x.size() == 4);
     ASSERT_TRUE (x.front() ==  3); 
 
-    x.pop_back();
+    x.pop_front();
     ASSERT_TRUE (x.size() == 3);  
     ASSERT_TRUE (x.front() ==  4);  
     x.pop_front();
@@ -454,7 +454,7 @@ TEST (my_deque, pop_front_6){
 TEST (my_deque, back_1){
     my_deque<int> x (10, 5);
     ASSERT_TRUE (x.back() == 5);
-    ASSERT_TRUE (&x.back() == &x.at(19));
+    ASSERT_TRUE (&x.back() == &x.at(9));
 }
 
 TEST (my_deque, back_2){
@@ -473,7 +473,7 @@ TEST (my_deque, back_3){
 TEST (my_deque, back_4){
     my_deque<int> x (10, 10);
     ASSERT_TRUE (x.back() == 10);
-    ASSERT_TRUE (&x.back() == &x.at(19));
+    ASSERT_TRUE (&x.back() == &x.at(9));
 }
 
 TEST (my_deque, back_5){
@@ -496,7 +496,7 @@ TEST (my_deque, back_6){
 TEST (my_deque, const_back_1){
     my_deque<int> x (10, 5);
     ASSERT_TRUE (x.back() == 5);
-    ASSERT_TRUE (&x.back() == &x.at(19));
+    ASSERT_TRUE (&x.back() == &x.at(9));
 }
 
 TEST (my_deque, const_back_2){
@@ -515,7 +515,7 @@ TEST (my_deque, const_back_3){
 TEST (my_deque, const_back_4){
     my_deque<int> x (10, 10);
     ASSERT_TRUE (x.back() == 10);
-    ASSERT_TRUE (&x.back() == &x.at(19));
+    ASSERT_TRUE (&x.back() == &x.at(9));
 }
 
 TEST (my_deque, const_back_5){
@@ -1603,6 +1603,20 @@ TEST (my_deque, resize_3) {
     my_deque<int> x;
     x.resize(20, 5);
     ASSERT_TRUE (x.size() == 20);}
+
+TEST (my_deque, resize_4) {
+    my_deque<int> x;
+    x.push_back(7);
+    x.push_back(9);
+    x.push_back(11);
+    x.push_back(13);
+    ASSERT_TRUE (x.size() == 4);
+    x.resize(2,4);
+    ASSERT_TRUE (x.size() == 2);
+    ASSERT_TRUE(x[0] == 7);
+    ASSERT_TRUE(x[1] == 9);
+}
+
 
 // ----------
 // clear
