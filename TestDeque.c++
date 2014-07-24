@@ -2017,7 +2017,7 @@ TEST(Iterator, star_1){
     my_deque<int>::iterator i = x.begin();
     *i = 9;
     ASSERT_TRUE(x.size() == 10);
-    ASSERT_TRUE(x[0] == 0);
+    ASSERT_TRUE(x[0] == 9);
 }
 
 TEST(Iterator, star_2){
@@ -2039,4 +2039,13 @@ TEST(Iterator, star_3){
     ASSERT_TRUE(x[0] == 10);
 }    
 
+TEST(Iterator, star_2){
+    my_deque<int> x (10, 5);
+    my_deque<int>::iterator i = x.begin();
+    i++;
+    i++;
+    *i = 6;
+    ASSERT_TRUE(x.size() == 10);
+    ASSERT_TRUE(x[2] == 6);
+}
 
