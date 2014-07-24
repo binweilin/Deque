@@ -222,7 +222,7 @@ TEST (my_deque, push_front_3){
 
 TEST (my_deque, push_front_4){
     my_deque<int> x (5, 5);
-    ASSERT_TRUE (x.size() == 10);
+    ASSERT_TRUE (x.size() == 5);
     ASSERT_TRUE (x.front() ==  5);
     x.push_front(1);
     x.push_front(2);
@@ -236,7 +236,7 @@ TEST (my_deque, push_front_4){
 
 TEST (my_deque, push_front_5){
     my_deque<int> x (30, 5);
-    ASSERT_TRUE (x.size() == 10);
+    ASSERT_TRUE (x.size() == 30);
     ASSERT_TRUE (x.front() ==  5);
     x.push_front(1);
     x.push_front(2);
