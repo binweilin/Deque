@@ -596,8 +596,6 @@ TYPED_TEST(TestDeque, front_2) {
     d.push_front(1);
     d.push_front(2);
     d.push_front(3);
-    //d.pop_back();
-    //d.print_deque();
 
     ASSERT_EQ(d.front(), 3);
     d.pop_front();
@@ -801,6 +799,7 @@ TYPED_TEST(TestDeque, const_begin_3) {
 // ----------
 // end
 // ----------
+
 TYPED_TEST(TestDeque, end_1) {
     DEFS
     
@@ -1614,6 +1613,7 @@ TYPED_TEST(TestDeque, copy_constructor_3) {
 // ---------------------
 // constructor_size
 // ---------------------
+
 TYPED_TEST(TestDeque, constructor_size_1) {
     DEFS
     
@@ -1712,6 +1712,7 @@ TYPED_TEST(TestDeque, assignment_6) {
 // -------------
 // equality
 // -------------
+
 TYPED_TEST(TestDeque, equality_1) {
     DEFS
     
@@ -1941,7 +1942,8 @@ TYPED_TEST(TestDeque, swap_3) {
 
 // --------------------------
 // const_iterator_constructor
-// ----------------------------
+// --------------------------
+
 TYPED_TEST(TestDeque, Const_Iterator_Constructor_1) {
   DEFS
 
@@ -2022,42 +2024,42 @@ TYPED_TEST(TestDeque, it_equals_3) {
 // const_iterator_equal
 // -------------------------
 
-// TYPED_TEST(TestDeque, const_iterator_equals_1)
-// {
-//     DEFS
-//     deque_type x;
-//     x.push_front(1);
-//     x.push_front(4);
-//     x.push_front(5);
-//     const deque_type a(x);
-//     typename deque_type::const_iterator y = a.begin();
-//     ASSERT_EQ(*(y+1),4);
-// }
+TYPED_TEST(TestDeque, const_iterator_equals_1)
+{
+    DEFS
+    deque_type x;
+    x.push_front(1);
+    x.push_front(4);
+    x.push_front(5);
+    const deque_type a(x);
+    typename deque_type::const_iterator y = a.begin();
+    ASSERT_EQ(*(y+1),4);
+}
 
-// TYPED_TEST(TestDeque, const_iterator_equals_2)
-// {
-//     DEFS
-//     deque_type x;
-//     x.push_front(1);
-//     x.push_front(4);
-//     x.push_front(5);
-//     const deque_type a(x);
-//     typename deque_type::const_iterator y = a.begin();
-//     ASSERT_EQ(*(y+2),1);
-// }
+TYPED_TEST(TestDeque, const_iterator_equals_2)
+{
+    DEFS
+    deque_type x;
+    x.push_front(1);
+    x.push_front(4);
+    x.push_front(5);
+    const deque_type a(x);
+    typename deque_type::const_iterator y = a.begin();
+    ASSERT_EQ(*(y+2),1);
+}
 
-// TYPED_TEST(TestDeque, const_iterator_equals_3)
-// {
-//     DEFS
-//     deque_type x;
-//     x.push_front(1);
-//     x.push_front(4);
-//     x.push_front(5);
-//     x.push_front(6);
-//     const deque_type a(x);
-//     typename deque_type::const_iterator y = a.begin();
-//     ASSERT_EQ(*(y+3),1);
-// }
+TYPED_TEST(TestDeque, const_iterator_equals_3)
+{
+    DEFS
+    deque_type x;
+    x.push_front(1);
+    x.push_front(4);
+    x.push_front(5);
+    x.push_front(6);
+    const deque_type a(x);
+    typename deque_type::const_iterator y = a.begin();
+    ASSERT_EQ(*(y+3),1);
+}
 
 // -------------------
 // iterator_not_equal
