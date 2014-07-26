@@ -1,0 +1,204 @@
+commit dd635454aa9032a7e40ee4a92cca95bb4dcb7bed
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Fri Jul 25 21:49:00 2014 -0500
+
+    final
+
+commit aa1f25ec25f95480ef46d73d83bc270cbae46931
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Fri Jul 25 20:56:17 2014 -0500
+
+    correction
+
+commit 8943ef85dc165187896e8e45b1ce410da1530fe1
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Fri Jul 25 17:08:37 2014 -0500
+
+    test cases
+
+commit ddb2341d5172f1f95da661e28d9f02369fed4c70
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Fri Jul 25 16:27:50 2014 -0500
+
+    test cases
+
+commit fd7939b9ae69d496a99a167fb53cfd08eb69150b
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 24 18:29:09 2014 -0500
+
+    correction
+
+commit c9075cb0341a26d4867fde6070e8c416ed35caea
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Thu Jul 24 18:25:23 2014 -0500
+
+    past most tests
+
+commit fd13e1ce0609b64c201b9fb6db79a37659a40934
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 24 15:10:13 2014 -0500
+
+    correction
+
+commit c61809c04bcd00157d72f3f3be6e0fe277d98174
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 24 15:06:36 2014 -0500
+
+    correction
+
+commit a7f2933cb0d97504e6c747a5f37e038528e7ed33
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 24 14:15:52 2014 -0500
+
+    correction
+
+commit c48119100bbd36ff51743f993959b992e065133d
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 24 13:49:46 2014 -0500
+
+    correction
+
+commit 977de30f98299ebad04144fa1877399354bf8402
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 24 13:05:21 2014 -0500
+
+    correction
+
+commit 7bcf43c6da738e0d398c403e6454e73f97a99a7f
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 24 13:02:47 2014 -0500
+
+    correction
+
+commit dd381b7673412478264035bb45fdb0cf797585bd
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 24 12:24:40 2014 -0500
+
+    more tests
+
+commit 6dcb9ee0f0bbf3ab7e4ebc0f2367f880992a2ee9
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 23 23:14:07 2014 -0500
+
+    Unit Tests complete
+
+commit b060ce4266cbe3c8bbef4ece814aade1a0ac76ae
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 23 21:13:51 2014 -0500
+
+    test cases
+
+commit 19ffd5c2d5458c5749c712b0d4e6f9b4e6b9bafc
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 23 00:35:33 2014 -0500
+
+    add documentation and unit tests
+
+commit 942bd3a7e58cf3861cea9a0c348a640948ca5ea5
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Tue Jul 22 14:29:28 2014 -0500
+
+    some errors
+
+commit a823bd707739e23882887f9032ec97b014348e23
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Tue Jul 22 13:32:09 2014 -0500
+
+    small changes
+
+commit 70e020599b20d27555dc5fac886f02a43be959ff
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Mon Jul 21 21:05:00 2014 -0500
+
+    most functions
+
+commit ba830ab1319b6becea80e9b6bd4ea11ff2e554ba
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Mon Jul 21 20:02:52 2014 -0500
+
+    several public functions
+
+commit 633f99b1dbc08fce8cdfe279bc93914e00563389
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Mon Jul 21 19:25:30 2014 -0500
+
+    first constructor
+
+commit ed6e20c5d8a97c020de5c4d41b5842ea83750f6b
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Mon Jul 21 18:06:20 2014 -0500
+
+    implements codes from class
+
+commit 7555e973f01f1af78d793cb72711cdfbeb2b96fd
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sun Jul 20 14:34:46 2014 -0500
+
+    const_iterator
+
+commit 34464fb63cbbeece4ed9dc21ab294183d9bf8e70
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sun Jul 20 13:41:48 2014 -0500
+
+    iterator class
+
+commit b778bf139daa7c49c9cf240f850b45e27ba3af95
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sun Jul 20 12:57:21 2014 -0500
+
+    friend == && !=
+
+commit 9ff32230b8388ebdd36717cc94cd270e7f051cd0
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sun Jul 20 12:44:52 2014 -0500
+
+    <
+
+commit f31db84ea7cf98990c4abd51d1337303cba87ba0
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sun Jul 20 12:33:47 2014 -0500
+
+    ==
+
+commit 09c1e43cdc7715a04bea93d8d419395fc8385c86
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sat Jul 19 17:19:06 2014 -0500
+
+    ==
+
+commit b7394d7cbafc48c704063172294e6b42f0c4c508
+Merge: 4c4c75f 254a4c4
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Sat Jul 19 16:04:15 2014 -0500
+
+    Merge branch 'master' of github.com:liang810612/cs378-deque
+
+commit 4c4c75f829b77507921299acf7c7e32a118492b5
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Sat Jul 19 16:03:52 2014 -0500
+
+    Documentation complete
+
+commit e1ccf768c53a3cb8ceb301d137879076699fafcc
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Sat Jul 19 16:02:55 2014 -0500
+
+    Documentation complete
+
+commit 254a4c440c6a2c3fa613bd4d4c72b68f786812fd
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sat Jul 19 15:16:25 2014 -0500
+
+    test files
+
+commit c190b163bcb4f05cb28b39089c28b74ba2e24ed4
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sat Jul 19 15:11:48 2014 -0500
+
+    original code
+
+commit 5be62186ad697e49af84f4d8d43740097064779e
+Author: binwei lin <binwei92@cs.utexas.edu>
+Date:   Sat Jul 19 13:26:01 2014 -0500
+
+    original code
