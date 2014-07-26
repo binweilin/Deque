@@ -731,9 +731,8 @@ TYPED_TEST(TestDeque, begin_5) {
     deque_type d (1, 20);
 
     ASSERT_EQ(*d.begin(), 20);
-    ASSERT_EQ(d[1], 20);   
-    d.pop_front();
-    ASSERT_EQ(*d.begin(),20);
+    ASSERT_EQ(d[0], 20);   
+
 }
 
 TYPED_TEST(TestDeque, begin_6) {
@@ -857,7 +856,7 @@ TYPED_TEST(TestDeque, end_6) {
     deque_type d;
     d.push_back(1);
     d.push_back(2);
-    d.push_back(23);    
+    d.push_back(3);    
     ASSERT_EQ(*(--d.end()), 3);
 }
 
@@ -1607,7 +1606,7 @@ TYPED_TEST(TestDeque, copy_constructor_3) {
     d.push_back(4);
     d.push_back(5);
     
-    ASSERT_EQ(e.size(), 5);
+    ASSERT_EQ(e.size(), 3);
 }
 
 // ---------------------
@@ -1924,14 +1923,14 @@ TYPED_TEST(TestDeque, swap_3) {
     
     deque_type d(10,5);
     ASSERT_EQ(d.size(), 10);
-    ASSERT_EQ(d[0], 1);
-    ASSERT_EQ(d[1], 2);
+    ASSERT_EQ(d[0], 5);
+    ASSERT_EQ(d[1], 5);
     
     deque_type e(5,1);    
     e.swap(d);
     
     ASSERT_EQ(d.size(), 5);
-    ASSERT_EQ(e.size(), 5);
+    ASSERT_EQ(e.size(), 10);
 }
 
 
