@@ -1,0 +1,5 @@
+In file included from TestDeque.c++:50:0:
+Deque.h: In member function ‘my_deque<T, A>::reference my_deque<T, A>::operator[](my_deque<T, A>::size_type) [with T = double; A = std::allocator<double>; my_deque<T, A>::reference = double&; my_deque<T, A>::size_type = long unsigned int]’:
+Deque.h:693:5: warning: ‘r’ may be used uninitialized in this function [-Wuninitialized]
+Deque.h: In member function ‘my_deque<T, A>::reference my_deque<T, A>::operator[](my_deque<T, A>::size_type) [with T = int; A = std::allocator<int>; my_deque<T, A>::reference = int&; my_deque<T, A>::size_type = long unsigned int]’:
+Deque.h:693:5: warning: ‘r’ may be used uninitialized in this function [-Wuninitialized]
